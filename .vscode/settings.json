@@ -1,0 +1,11 @@
+{
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "[java]": {
+        "editor.defaultFormatter": "redhat.java",
+        "editor.formatOnSave": true
+    },
+    "java.format.settings.profile": "GoogleStyle",
+    "java.format.enabled": true
+}
