@@ -20,18 +20,43 @@
 //   5. 총 금액이 50000원 이상이면 "10% 할인 적용!" 출력 후 할인 금액 계산
 
 // TODO: Item 클래스 완성
+
+import java.io.Console;
+
 class Item {
     // TODO: 필드
-
+    private String name;
+    private int price;
+    private int quantity;
 
     // TODO: 생성자
-
+    Item(String name, int price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
 
     // TODO: totalPrice()
-
+    int totalPrice() {
+        return price * quantity;
+    }
 
     // TODO: printItem()
+    void printItem() {
+        System.out.println(name + " | 단가: " + price + "원 | 수량: " + quantity + "개 | 소계: " + price * quantity + "원");
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
 }
 
 public class Practice07 {
@@ -40,37 +65,56 @@ public class Practice07 {
         System.out.println("======= 쇼핑 카트 =======\n");
 
         Item[] cart = {
-            new Item("노트북",  1200000, 1),
-            new Item("마우스",    25000, 2),
-            new Item("키보드",    55000, 1),
-            new Item("모니터",   350000, 1),
-            new Item("USB 허브",  18000, 3),
+                new Item("노트북", 1200000, 1),
+                new Item("마우스", 25000, 2),
+                new Item("키보드", 55000, 1),
+                new Item("모니터", 350000, 1),
+                new Item("USB 허브", 18000, 3),
         };
 
         // TODO 1: 전체 상품 목록 출력
         System.out.println("[상품 목록]");
         // for-each 사용
+        for (Item i : cart) {
+            i.printItem();
+        }
 
         // TODO 2: 총 금액 계산
         int total = 0;
         // for-each 사용
+        for (Item i : cart) {
+            total += i.totalPrice();
+        }
 
         System.out.println("\n총 금액: " + total + "원");
 
         // TODO 3: 가장 비싼 상품 출력 (totalPrice 기준)
         Item mostExpensive = cart[0];
         // for-each 사용
+        for (Item i : cart) {
+            if (mostExpensive.totalPrice() < i.totalPrice()) {
+                mostExpensive = i;
+            }
+        }
 
-        System.out.println("가장 비싼 항목: " + mostExpensive.name
+        System.out.println("가장 비싼 항목: " + mostExpensive.getName()
                 + " (" + mostExpensive.totalPrice() + "원)");
+
+        if (total >= 50000) {
+            System.out.println("10% 할인 적용!");
+            System.out.println("할인 금액: " + (int) (total * 0.1));
+            total *= 0.9;
+        }
+
+        System.out.println("최종 금액: " + total);
 
         // TODO 4: 총 금액 50000원 이상이면 10% 할인 적용
         // 힌트: (int)(total * 0.9) 로 계산
 
         // 출력 예시:
         // [상품 목록]
-        // 노트북    | 단가: 1200000원 | 수량: 1개 | 소계: 1200000원
-        // 마우스    | 단가:    25000원 | 수량: 2개 | 소계:    50000원
+        // 노트북 | 단가: 1200000원 | 수량: 1개 | 소계: 1200000원
+        // 마우스 | 단가: 25000원 | 수량: 2개 | 소계: 50000원
         // ...
         //
         // 총 금액: 1748000원
@@ -78,5 +122,6 @@ public class Practice07 {
         // 10% 할인 적용!
         // 할인 금액: 174800원
         // 최종 금액: 1573200원
+
     }
 }

@@ -23,19 +23,49 @@
 
 class BankAccount {
     // TODO: 필드 선언
-
+    private String owner;
+    private int balance;
 
     // TODO: 생성자
-
+    BankAccount(String owner, int initialBalance) {
+        this.owner = owner;
+        this.balance = initialBalance;
+    }
 
     // TODO: deposit()
-
+    void deposit(int amount) {
+        if (amount > 0) {
+            balance += amount;
+            System.out.println(amount + "원 입금. 잔액: " + balance + "원");
+            return;
+        }
+        System.out.println("입금액 오류");
+        return;
+    }
 
     // TODO: withdraw()
-
+    void withdraw(int amount) {
+        if (balance >= amount) {
+            balance -= amount;
+            System.out.println(amount + "원 출금. 잔액: " + balance + "원");
+            return;
+        }
+        System.out.println("잔액 부족");
+        return;
+    }
 
     // TODO: printInfo()
+    void printInfo() {
+        System.out.println("예금주: " + owner + " | 잔액: " + balance + "원");
+    }
 
+    public String getOwner() {
+        return owner;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
 }
 
 public class Practice06 {
@@ -49,8 +79,8 @@ public class Practice06 {
         acc.printInfo();
         acc.deposit(5000);
         acc.withdraw(3000);
-        acc.withdraw(20000);  // 잔액 부족 케이스
-        acc.deposit(-100);    // 입금액 오류 케이스
+        acc.withdraw(20000); // 잔액 부족 케이스
+        acc.deposit(-100); // 입금액 오류 케이스
         acc.printInfo();
 
         // 출력 예시:
@@ -61,7 +91,6 @@ public class Practice06 {
         // 입금액 오류
         // 예금주: 홍길동 | 잔액: 12000원
 
-
         // ── 문제 2 ──────────────────────────────────────
         // 계좌 배열로 전체 잔액 합계를 구하세요.
         //
@@ -70,13 +99,15 @@ public class Practice06 {
 
         System.out.println("\n=== 문제 2: 계좌 배열 ===");
         BankAccount[] accounts = {
-            new BankAccount("Alice", 20000),
-            new BankAccount("Bob",   15000),
-            new BankAccount("Charlie", 20000),
+                new BankAccount("Alice", 20000),
+                new BankAccount("Bob", 15000),
+                new BankAccount("Charlie", 20000),
         };
-
-        // TODO: 전체 잔액 합계 계산 후 출력
         int total = 0;
+        // TODO: 전체 잔액 합계 계산 후 출력
+        for (BankAccount i : accounts) {
+            total += i.getBalance();
+        }
 
         System.out.println("전체 잔액 합계: " + total + "원");
     }
