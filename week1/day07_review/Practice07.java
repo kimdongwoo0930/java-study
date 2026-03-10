@@ -21,7 +21,7 @@
 
 // TODO: Item 클래스 완성
 
-import java.io.Console;
+
 
 class Item {
     // TODO: 필드
